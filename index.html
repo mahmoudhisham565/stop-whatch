@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOP-WHATCH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui;
+            font-size: 25px;
+            font-weight: 400;
+        }
+        
+        .timeline {
+            width: 500px;
+            height: 500px;
+            margin: 70px 400px;
+            text-align: center;
+            background-color: rgb(5, 0, 46);
+            box-shadow: 0 5px 25px rgba(1 1 1 / 15);
+            border-radius: 50%;
+            transition: .75s ease;
+        }
+        
+        
+        .container2 {
+            padding-top: 186px;
+        }
+        
+        #houres::after {
+            content: ':';
+        }
+        
+        #mintes::after {
+            content: ':';
+        }
+        
+        
+        p {
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: yellow;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-left: 130px;
+            transition: .75s ease;
+        }
+        
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        #run {
+            width: 200px;
+            padding: 5px 0px;
+            background-color: rgb(5, 0, 46);
+            color: white;
+            outline: none;
+            border: 3px solid yellow;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        
+        #run:hover {
+            background-color: yellow;
+            box-shadow: 0 0 35px rgba(255, 255, 0, 0.76);
+            color: black;
+        }
+        
+        #stopTime {
+            width: 200px;
+            padding: 5px 0px;
+            background-color: rgb(5, 0, 46);
+            color: white;
+            outline: none;
+            border: 3px solid yellow;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        
+        #stopTime:hover {
+            cursor: pointer;
+            box-shadow: 0 0 35px rgba(255, 255, 0, 0.76);
+            background-color: yellow;
+            color: black;
+        }
+        
+        #resetTime {
+            width: 200px;
+            padding: 5px 0px;
+            background-color: rgb(5, 0, 46);
+            color: white;
+            outline: none;
+            border: 3px solid yellow;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        
+        #resetTime:hover {
+            cursor: pointer;
+            box-shadow: 0 0 35px rgba(255, 255, 0, 0.76);
+            background-color: yellow;
+            color: black;
+        }
+        
+        
+        @media (max-width: 767px) {
+            .timeline {
+                width: 100vh;
+                height: 100vh;
+                border-radius: 0;
+            }
+            p {
+                margin-left: 330px;
+            }
+            
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <div class="container2">
+            <p><span id="houres">0</span> <span id="mintes">0</span> <span id="seconds">0</span></p>
+            <div class="btn">
+                <button id="run">start</button>
+                <button id="stopTime">stop</button>
+                <button id="resetTime">reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let houres = document.getElementById('houres')
+let mintes = document.getElementById('mintes')
+let seconds = document.getElementById('seconds')
+let run = document.getElementById('run')
+let stopTime = document.getElementById('stopTime')
+let resetTime = document.getElementById('resetTime')
+let interval;
+
+function startTime() {
+    +seconds.innerHTML++;
+    if (seconds.innerHTML === '5'){
+        +mintes.innerHTML++
+        seconds.innerHTML = '0'
+    }else if (mintes.innerHTML === '5') {
+        +houres.innerHTML++
+        mintes.innerHTML = '0'
+    }
+}
+
+run.onclick = function() {
+    interval = setInterval(startTime, 1000)
+}
+
+stopTime.onclick = function() {
+    clearInterval(interval)
+}
+
+resetTime.onclick = function() {
+    clearInterval(interval)
+    houres.innerHTML = '0'
+    mintes.innerHTML = '0'
+    seconds.innerHTML = '0'
+}
+    </script>
+</body>
+</html>
